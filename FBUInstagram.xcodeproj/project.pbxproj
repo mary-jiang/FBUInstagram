@@ -19,6 +19,8 @@
 		AAC464982694E77F001C5719 /* FBUInstagramUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC464972694E77F001C5719 /* FBUInstagramUITests.m */; };
 		AAC464A72694F022001C5719 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC464A62694F022001C5719 /* LoginViewController.m */; };
 		AAC464AA2694F3BF001C5719 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC464A92694F3BF001C5719 /* FeedViewController.m */; };
+		AAC464AD2694F987001C5719 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC464AC2694F987001C5719 /* ComposeViewController.m */; };
+		AAC464B326950132001C5719 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC464B226950132001C5719 /* Post.m */; };
 		C548FE8CDBF253CFFC81CFF7 /* Pods_FBUInstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30224F39DBEB47E91E1A619 /* Pods_FBUInstagram.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,10 @@
 		AAC464A62694F022001C5719 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AAC464A82694F3BF001C5719 /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		AAC464A92694F3BF001C5719 /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		AAC464AB2694F987001C5719 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		AAC464AC2694F987001C5719 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		AAC464B126950132001C5719 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		AAC464B226950132001C5719 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		D11D3FEC72BECFCAE0550813 /* Pods-FBUInstagramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBUInstagramTests.release.xcconfig"; path = "Target Support Files/Pods-FBUInstagramTests/Pods-FBUInstagramTests.release.xcconfig"; sourceTree = "<group>"; };
 		E30224F39DBEB47E91E1A619 /* Pods_FBUInstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBUInstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A1383D412C93BC77D4BF8 /* Pods_FBUInstagram_FBUInstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBUInstagram_FBUInstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,15 +153,13 @@
 		AAC4646F2694E77C001C5719 /* FBUInstagram */ = {
 			isa = PBXGroup;
 			children = (
+				AAC464B0269500B3001C5719 /* Models */,
+				AAC464AF26950071001C5719 /* ViewControllers */,
 				AAC464702694E77C001C5719 /* AppDelegate.h */,
 				AAC464712694E77C001C5719 /* AppDelegate.m */,
 				AAC464732694E77C001C5719 /* SceneDelegate.h */,
 				AAC464742694E77C001C5719 /* SceneDelegate.m */,
 				AAC464792694E77C001C5719 /* Main.storyboard */,
-				AAC464A52694F022001C5719 /* LoginViewController.h */,
-				AAC464A62694F022001C5719 /* LoginViewController.m */,
-				AAC464A82694F3BF001C5719 /* FeedViewController.h */,
-				AAC464A92694F3BF001C5719 /* FeedViewController.m */,
 				AAC4647C2694E77F001C5719 /* Assets.xcassets */,
 				AAC4647E2694E77F001C5719 /* LaunchScreen.storyboard */,
 				AAC464812694E77F001C5719 /* Info.plist */,
@@ -180,6 +184,28 @@
 				AAC464992694E77F001C5719 /* Info.plist */,
 			);
 			path = FBUInstagramUITests;
+			sourceTree = "<group>";
+		};
+		AAC464AF26950071001C5719 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AAC464AC2694F987001C5719 /* ComposeViewController.m */,
+				AAC464AB2694F987001C5719 /* ComposeViewController.h */,
+				AAC464A52694F022001C5719 /* LoginViewController.h */,
+				AAC464A92694F3BF001C5719 /* FeedViewController.m */,
+				AAC464A62694F022001C5719 /* LoginViewController.m */,
+				AAC464A82694F3BF001C5719 /* FeedViewController.h */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		AAC464B0269500B3001C5719 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AAC464B126950132001C5719 /* Post.h */,
+				AAC464B226950132001C5719 /* Post.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,8 +448,10 @@
 				AAC464A72694F022001C5719 /* LoginViewController.m in Sources */,
 				AAC464AA2694F3BF001C5719 /* FeedViewController.m in Sources */,
 				AAC464722694E77C001C5719 /* AppDelegate.m in Sources */,
+				AAC464AD2694F987001C5719 /* ComposeViewController.m in Sources */,
 				AAC464832694E77F001C5719 /* main.m in Sources */,
 				AAC464752694E77C001C5719 /* SceneDelegate.m in Sources */,
+				AAC464B326950132001C5719 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
