@@ -9,8 +9,11 @@
 #import "Post.h"
 
 @interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 @property (nonatomic, strong) UIImage *postImage;
-@property (weak, nonatomic) IBOutlet UITextField *captionTextField;
+@property (weak, nonatomic) IBOutlet UITextView *captionTextView;
+@property (weak, nonatomic) IBOutlet UIImageView *previewImage;
+@property (nonatomic, strong) UIImagePickerController *imagePickerVC;
 
 @end
 
@@ -20,23 +23,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // style text view
+    self.captionTextView.layer.cornerRadius = 8;
+    self.captionTextView.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.captionTextView.layer.borderWidth = 1.0;
+    
     // instantiate a new UIImagePickerController
-    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    imagePickerVC.delegate = self;
-    imagePickerVC.allowsEditing = YES;
+    self.imagePickerVC = [UIImagePickerController new];
+    self.imagePickerVC.delegate = self;
+    self.imagePickerVC.allowsEditing = YES;
     
     // need to check if the camera is supported on device before trying to present it
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         // if the camera is available then set the image picker's source to be the camera
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
     else {
         // if the camera is not available then set image picker's source to be the photo library
         NSLog(@"Camera 🚫 available so we will use photo library instead");
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
+    [self presentViewController:self.imagePickerVC animated:YES completion:nil];
 }
 
 - (IBAction)didTapCancel:(id)sender {
@@ -46,7 +54,7 @@
 
 - (IBAction)didTapPost:(id)sender {
     // create a post with chosen image and caption and upload it to Parse server
-    [Post postUserImage:self.postImage withCaption:self.captionTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [Post postUserImage:self.postImage withCaption:self.captionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             // dismiss this view controller
             [self dismissViewControllerAnimated:true completion:nil];
@@ -56,7 +64,11 @@
     }];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
+- (IBAction)didTapPicture:(id)sender {
+    [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     // get the edited (aka cropped) image captured by the UIImagePickerController
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
@@ -65,6 +77,9 @@
     
     // set postImage property to be resizedImage
     self.postImage = resizedImage;
+    
+    // set previewImage to be the selected postImage
+    self.previewImage.image = self.postImage;
     
     // dismiss UIImagePickerController to go back to original view controller
     [self dismissViewControllerAnimated:true completion:nil];

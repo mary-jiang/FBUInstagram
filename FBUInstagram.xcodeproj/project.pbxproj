@@ -21,6 +21,8 @@
 		AAC464AA2694F3BF001C5719 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC464A92694F3BF001C5719 /* FeedViewController.m */; };
 		AAC464AD2694F987001C5719 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC464AC2694F987001C5719 /* ComposeViewController.m */; };
 		AAC464B326950132001C5719 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC464B226950132001C5719 /* Post.m */; };
+		AAC464B626952118001C5719 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC464B526952118001C5719 /* PostCell.m */; };
+		AAD5957A2696367500A58F63 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD595792696367500A58F63 /* DetailsViewController.m */; };
 		C548FE8CDBF253CFFC81CFF7 /* Pods_FBUInstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30224F39DBEB47E91E1A619 /* Pods_FBUInstagram.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,10 @@
 		AAC464AC2694F987001C5719 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		AAC464B126950132001C5719 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		AAC464B226950132001C5719 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		AAC464B426952118001C5719 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
+		AAC464B526952118001C5719 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		AAD595782696367500A58F63 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		AAD595792696367500A58F63 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		D11D3FEC72BECFCAE0550813 /* Pods-FBUInstagramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBUInstagramTests.release.xcconfig"; path = "Target Support Files/Pods-FBUInstagramTests/Pods-FBUInstagramTests.release.xcconfig"; sourceTree = "<group>"; };
 		E30224F39DBEB47E91E1A619 /* Pods_FBUInstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBUInstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18A1383D412C93BC77D4BF8 /* Pods_FBUInstagram_FBUInstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBUInstagram_FBUInstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +159,7 @@
 		AAC4646F2694E77C001C5719 /* FBUInstagram */ = {
 			isa = PBXGroup;
 			children = (
+				AAC464B726952123001C5719 /* Cells */,
 				AAC464B0269500B3001C5719 /* Models */,
 				AAC464AF26950071001C5719 /* ViewControllers */,
 				AAC464702694E77C001C5719 /* AppDelegate.h */,
@@ -195,6 +202,8 @@
 				AAC464A92694F3BF001C5719 /* FeedViewController.m */,
 				AAC464A62694F022001C5719 /* LoginViewController.m */,
 				AAC464A82694F3BF001C5719 /* FeedViewController.h */,
+				AAD595782696367500A58F63 /* DetailsViewController.h */,
+				AAD595792696367500A58F63 /* DetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -206,6 +215,15 @@
 				AAC464B226950132001C5719 /* Post.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		AAC464B726952123001C5719 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AAC464B426952118001C5719 /* PostCell.h */,
+				AAC464B526952118001C5719 /* PostCell.m */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,8 +466,10 @@
 				AAC464A72694F022001C5719 /* LoginViewController.m in Sources */,
 				AAC464AA2694F3BF001C5719 /* FeedViewController.m in Sources */,
 				AAC464722694E77C001C5719 /* AppDelegate.m in Sources */,
+				AAC464B626952118001C5719 /* PostCell.m in Sources */,
 				AAC464AD2694F987001C5719 /* ComposeViewController.m in Sources */,
 				AAC464832694E77F001C5719 /* main.m in Sources */,
+				AAD5957A2696367500A58F63 /* DetailsViewController.m in Sources */,
 				AAC464752694E77C001C5719 /* SceneDelegate.m in Sources */,
 				AAC464B326950132001C5719 /* Post.m in Sources */,
 			);
