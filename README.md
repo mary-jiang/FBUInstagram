@@ -1,6 +1,6 @@
-# Project 4 - Instagram
+# Project 4 - Not Instagram
 
-Instagram is a photo sharing app using Parse as its backend.
+Not Instagram is a photo sharing app using Parse as its backend.
 
 Time spent: 6 hours spent in total
 
@@ -30,7 +30,7 @@ The following **optional** features are implemented:
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
 - [ ] User can like a post and see number of likes for each post in the post details screen.
 - [ ] Style the login page to look like the real Instagram login page.
-- [ ] Style the feed to look like the real Instagram feed.
+- [x] Style the feed to look like the real Instagram feed.
 - [ ] Implement a custom camera view.
 
 The following **additional** features are implemented:
