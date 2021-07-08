@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic) int numOfPostsToLoad;
 
 @end
 
@@ -29,6 +30,9 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    // initally we want to load 20 posts to start
+    self.numOfPostsToLoad = 5;
     
     [self fetchPosts];
     
@@ -56,7 +60,7 @@
 - (void)fetchPosts {
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    query.limit = 20;
+    query.limit = self.numOfPostsToLoad;
     [query orderByDescending:@"createdAt"];
 
     // fetch data asynchronously
@@ -72,29 +76,6 @@
         [self.refreshControl endRefreshing];
     }];
 }
-
-// used to fetch more posts when we reach the end of the posts that we already have
-// TODO: find a way to make it so that this is not just reused code, figure out how to make it work with refresh control
-- (void)fetchMorePosts:(int)numOfPosts {
-    // construct query
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    query.limit = numOfPosts;
-    [query orderByDescending:@"createdAt"];
-
-    // fetch data asynchronously
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            // set posts array to be the posts we have just fetched from the server
-            self.posts = posts;
-            // reload tableview to update the posts that we are seeing
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-        [self.refreshControl endRefreshing];
-    }];
-}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PostCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell"];
@@ -110,7 +91,8 @@
 // we can use this to detect when we are getting to the end of the data we have so we can load ore
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row + 1 == self.posts.count) {
-        [self fetchMorePosts:(int)self.posts.count + 20];
+        self.numOfPostsToLoad += 20; // increase the number of posts we want to load
+        [self fetchPosts];
     }
 }
 
