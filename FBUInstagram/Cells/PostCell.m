@@ -28,6 +28,7 @@
     [user fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
             self.usernameLabel.text = object[@"username"];
+            self.headerUsernameLabel.text = object[@"username"];
         } else {
             NSLog(@"Error fetching user: %@", error.localizedDescription);
         }
@@ -42,6 +43,17 @@
             NSLog(@"Error fetching image: %@", error.localizedDescription);
         }
     }];
+    
+    // have not implemented profile picture feature, for now put in a placeholder
+    self.profileImageView.image = [UIImage imageNamed:@"image_placeholder"];
+    
+    // get date the post was created at and format it
+    NSDate *createdAt = [self.post createdAt];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterShortStyle;
+
+    self.timestampLabel.text = [formatter stringFromDate:createdAt];
     
     self.captionLabel.text = self.post[@"caption"];
     self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", self.post[@"likeCount"]];
