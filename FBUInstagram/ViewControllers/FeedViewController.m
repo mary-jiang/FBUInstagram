@@ -42,6 +42,11 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
+// in case profile view (tab bar access) causes the main feed to change, reload this view to reflect those changes
+- (void)viewWillAppear:(BOOL)animated{
+    [self fetchPosts];
+}
+
 - (IBAction)didTapLogout:(id)sender {
     // log out the user from parse server
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {

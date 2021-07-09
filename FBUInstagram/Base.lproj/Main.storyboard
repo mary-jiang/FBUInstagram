@@ -462,6 +462,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="captionTextView" destination="nN8-5r-pwM" id="itw-xh-VbC"/>
+                        <outlet property="postButton" destination="AF2-UV-8yZ" id="JgZ-EU-VI7"/>
                         <outlet property="previewImage" destination="nhu-0Z-ikK" id="K6g-RY-pcz"/>
                     </connections>
                 </viewController>

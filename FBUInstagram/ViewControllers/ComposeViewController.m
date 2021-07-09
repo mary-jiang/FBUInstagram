@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *captionTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImage;
 @property (nonatomic, strong) UIImagePickerController *imagePickerVC;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *postButton;
 
 @end
 
@@ -23,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.postButton.enabled = true;
     
     // style text view
     self.captionTextView.layer.cornerRadius = 8;
@@ -54,6 +57,9 @@
 }
 
 - (IBAction)didTapPost:(id)sender {
+    // disable the post button so that the same post isn't posted twice if user just mashes button
+    self.postButton.enabled = false;
+    
     // create a post with chosen image and caption and upload it to Parse server
     [Post postUserImage:self.postImage withCaption:self.captionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
@@ -61,6 +67,8 @@
             [self dismissViewControllerAnimated:true completion:nil];
         } else {
             NSLog(@"error creating post: %@", error.localizedDescription);
+            // reenable button so that user can try posting again
+            self.postButton.enabled = true;
         }
     }];
 }
