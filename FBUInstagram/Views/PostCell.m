@@ -29,9 +29,6 @@
     PFFileObject *image = self.post[@"image"];
     NSURL *imageURL = [NSURL URLWithString:image.url];
     [self.postImageView setImageWithURL:imageURL];
-    
-    // have not implemented profile picture feature, for now put in a placeholder
-    self.profileImageView.image = [UIImage imageNamed:@"image_placeholder"];
 
     self.timestampLabel.text = [FBUInstagramHelper getRelativeTimeStampString:[self.post createdAt]];
     
@@ -45,6 +42,10 @@
     
     self.usernameLabel.text = self.username;
     self.headerUsernameLabel.text = self.username;
+}
+
+- (void)updateProfileImage:(UIImage *)image {
+    self.profileImageView.image = image;
 }
 
 @end

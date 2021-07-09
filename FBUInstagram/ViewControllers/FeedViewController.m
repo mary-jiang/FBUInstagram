@@ -85,6 +85,15 @@
     [user fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
         if (error == nil) {
             cell.username = object[@"username"];
+            // check to see if the user has a profile picture, if it does then update profile picture accordingly
+            PFFileObject *profilePicture = object[@"profilepicture"];
+            if (profilePicture != nil) {
+                NSURL *profileURL = [NSURL URLWithString:profilePicture.url];
+                NSData *profileData = [NSData dataWithContentsOfURL:profileURL];
+                [cell updateProfileImage:[UIImage imageWithData:profileData]];
+            } else {
+                [cell updateProfileImage:[UIImage imageNamed:@"image_placeholder"]];
+            }
         } else {
             NSLog(@"Error fetching user: %@", error.localizedDescription);
         }

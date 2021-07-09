@@ -15,7 +15,8 @@
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, ProfileViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet ProfileView *profileView;
 @property (strong, nonatomic) NSArray *posts;
-@property (nonatomic, strong) UIImagePickerController *imagePickerVC;
+@property (strong, nonatomic) UIImagePickerController *imagePickerVC;
+
 @end
 
 @implementation ProfileViewController
@@ -24,7 +25,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    PFUser *user = [PFUser currentUser];
+    if(self.user == nil){
+        self.user = [PFUser currentUser];
+    }
     
     self.profileView.collectionView.delegate = self;
     self.profileView.collectionView.dataSource = self;
@@ -41,11 +44,19 @@
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     
     // update the UI elements not in the collection view
-    [self.profileView updateUsername:user.username];
-    [self.profileView updateProfilePicture:[UIImage imageNamed:@"image_placeholder"]]; //image placeholder for until profile image feature is completed
+    [self.profileView updateUsername:self.user.username];
+    
+    PFFileObject *profilePicture = self.user[@"profilepicture"];
+    if (profilePicture != nil) {
+        NSURL *profileURL = [NSURL URLWithString:profilePicture.url];
+        NSData *profileData = [NSData dataWithContentsOfURL:profileURL];
+        [self.profileView updateProfilePicture:[UIImage imageWithData:profileData]];
+    } else {
+        [self.profileView updateProfilePicture:[UIImage imageNamed:@"image_placeholder"]];
+    }
    
     // get posts posted by the user
-    [self fetchPostsByUser:user];
+    [self fetchPostsByUser:self.user];
      
     // initializes a tap gesture recognizer on the profile picture
     [self.profileView createProfileTapGestureRecognizer];
@@ -109,8 +120,18 @@
     // resize image to make sure that the size is small enough to upload to Parse
     UIImage *resizedImage = [FBUInstagramHelper resizeImage:editedImage withSize:CGSizeMake(100.0, 100.0)];
 
-    // update the profile picture
+    // update the profile picture view
     [self.profileView updateProfilePicture:resizedImage];
+    
+    // update the user's profile picture in Parse
+    self.user[@"profilepicture"] = [Post getPFFileFromImage:resizedImage];
+    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"Profile picture saved successfully");
+        } else {
+            NSLog(@"Problem saving profile picture: %@", error.localizedDescription);
+        }
+    }];
     
     // dismiss UIImagePickerController to go back to original view controller
     [self dismissViewControllerAnimated:true completion:nil];

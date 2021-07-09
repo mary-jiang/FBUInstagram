@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) NSString *username;
 
+- (void)updateProfileImage: (UIImage *)image;
+
 @end
 
 NS_ASSUME_NONNULL_END
