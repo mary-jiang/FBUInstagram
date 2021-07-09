@@ -10,10 +10,12 @@
 #import <Parse/Parse.h>
 #import "PostGridCell.h"
 #import "Post.h"
+#import "FBUInstagramHelper.h"
 
-@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, ProfileViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet ProfileView *profileView;
 @property (strong, nonatomic) NSArray *posts;
+@property (nonatomic, strong) UIImagePickerController *imagePickerVC;
 @end
 
 @implementation ProfileViewController
@@ -41,8 +43,30 @@
     // update the UI elements not in the collection view
     [self.profileView updateUsername:user.username];
     [self.profileView updateProfilePicture:[UIImage imageNamed:@"image_placeholder"]]; //image placeholder for until profile image feature is completed
-    
+   
+    // get posts posted by the user
     [self fetchPostsByUser:user];
+     
+    // initializes a tap gesture recognizer on the profile picture
+    [self.profileView createProfileTapGestureRecognizer];
+    self.profileView.delegate = self;
+    
+    // instantiate a new UIImagePickerController
+    self.imagePickerVC = [UIImagePickerController new];
+    self.imagePickerVC.delegate = self;
+    self.imagePickerVC.allowsEditing = YES;
+    
+    // need to check if the camera is supported on device before trying to present it
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        // if the camera is available then set the image picker's source to be the camera
+        self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else {
+        // if the camera is not available then set image picker's source to be the photo library
+        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
 }
 
 
@@ -72,6 +96,24 @@
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
+}
+
+- (void)didTapProfilePicture{
+    [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    // get the edited (aka cropped) image captured by the UIImagePickerController
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    
+    // resize image to make sure that the size is small enough to upload to Parse
+    UIImage *resizedImage = [FBUInstagramHelper resizeImage:editedImage withSize:CGSizeMake(100.0, 100.0)];
+
+    // update the profile picture
+    [self.profileView updateProfilePicture:resizedImage];
+    
+    // dismiss UIImagePickerController to go back to original view controller
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 /*

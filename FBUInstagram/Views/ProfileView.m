@@ -32,4 +32,16 @@
     self.profileImageView.image = image;
 }
 
+- (void)createProfileTapGestureRecognizer{
+    // create and configure tap recognizer
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUserProfile)];
+    [self.profileImageView addGestureRecognizer:profileTapGestureRecognizer];
+    [self.profileImageView setUserInteractionEnabled:true];
+}
+
+- (void)didTapUserProfile {
+    // tell the delegate that the user profile was tapped
+    [self.delegate didTapProfilePicture];
+}
+
 @end

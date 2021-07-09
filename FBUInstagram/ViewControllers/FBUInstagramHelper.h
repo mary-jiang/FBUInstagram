@@ -6,12 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FBUInstagramHelper : NSObject
 
-+ (NSString *) getRelativeTimeStampString: (NSDate *)date; 
++ (NSString *) getRelativeTimeStampString: (NSDate *)date;
+
++ (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size;
 
 @end
 

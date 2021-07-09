@@ -7,6 +7,7 @@
 
 #import "ComposeViewController.h"
 #import "Post.h"
+#import "FBUInstagramHelper.h"
 
 @interface ComposeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -73,7 +74,7 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     // resize image to make sure that the size is small enough to upload to Parse
-    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(500.0, 500.0)];
+    UIImage *resizedImage = [FBUInstagramHelper resizeImage:editedImage withSize:CGSizeMake(500.0, 500.0)];
     
     // set postImage property to be resizedImage
     self.postImage = resizedImage;
@@ -85,20 +86,6 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
-// returns a resized UIImage of a specified size
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
-}
 
 /*
 #pragma mark - Navigation
