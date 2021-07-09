@@ -7,6 +7,7 @@
 
 #import "PostCell.h"
 #import "UIKit+AFNetworking.h"
+#import "FBUInstagramHelper.h"
 
 @implementation PostCell
 
@@ -31,14 +32,8 @@
     
     // have not implemented profile picture feature, for now put in a placeholder
     self.profileImageView.image = [UIImage imageNamed:@"image_placeholder"];
-    
-    // get date the post was created at and format it
-    NSDate *createdAt = [self.post createdAt];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateStyle = NSDateFormatterShortStyle;
-    formatter.timeStyle = NSDateFormatterShortStyle;
 
-    self.timestampLabel.text = [formatter stringFromDate:createdAt];
+    self.timestampLabel.text = [FBUInstagramHelper getRelativeTimeStampString:[self.post createdAt]];
     
     self.captionLabel.text = self.post[@"caption"];
     self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", self.post[@"likeCount"]];

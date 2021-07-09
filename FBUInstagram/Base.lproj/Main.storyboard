@@ -351,7 +351,7 @@
                                 </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v2g-Nf-ck2">
-                                <rect key="frame" x="0.0" y="214" width="414" height="599"/>
+                                <rect key="frame" x="40" y="214" width="354" height="599"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wf2-Hu-z8e">
                                     <size key="itemSize" width="128" height="128"/>
@@ -384,14 +384,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="huY-zO-KEa" firstAttribute="bottom" secondItem="lFR-oA-TWH" secondAttribute="bottom" id="0bO-x8-h8F"/>
-                            <constraint firstItem="vbg-RF-pFE" firstAttribute="trailing" secondItem="v2g-Nf-ck2" secondAttribute="trailing" id="5d2-Sy-0M5"/>
                             <constraint firstItem="lFR-oA-TWH" firstAttribute="top" secondItem="vbg-RF-pFE" secondAttribute="top" constant="40" id="6MA-BG-Ucm"/>
                             <constraint firstItem="lFR-oA-TWH" firstAttribute="leading" secondItem="vbg-RF-pFE" secondAttribute="leading" constant="40" id="6Tk-8f-b2U"/>
+                            <constraint firstItem="v2g-Nf-ck2" firstAttribute="trailing" secondItem="huY-zO-KEa" secondAttribute="trailing" id="KuI-xG-YWm"/>
                             <constraint firstItem="vbg-RF-pFE" firstAttribute="trailing" secondItem="huY-zO-KEa" secondAttribute="trailing" constant="20" id="UI2-nK-gCF"/>
                             <constraint firstItem="v2g-Nf-ck2" firstAttribute="top" secondItem="huY-zO-KEa" secondAttribute="bottom" constant="16" id="ZRD-Pj-pij"/>
                             <constraint firstItem="huY-zO-KEa" firstAttribute="leading" secondItem="lFR-oA-TWH" secondAttribute="trailing" constant="8" id="fEk-9V-MBb"/>
+                            <constraint firstItem="v2g-Nf-ck2" firstAttribute="leading" secondItem="lFR-oA-TWH" secondAttribute="leading" id="fPa-pW-ZNO"/>
                             <constraint firstItem="vbg-RF-pFE" firstAttribute="bottom" secondItem="v2g-Nf-ck2" secondAttribute="bottom" id="gUT-8v-frA"/>
-                            <constraint firstItem="v2g-Nf-ck2" firstAttribute="leading" secondItem="vbg-RF-pFE" secondAttribute="leading" id="mzp-Cc-aNN"/>
                         </constraints>
                         <connections>
                             <outlet property="collectionView" destination="v2g-Nf-ck2" id="nLO-bi-5dp"/>

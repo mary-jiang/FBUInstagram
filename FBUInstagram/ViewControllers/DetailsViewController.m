@@ -7,6 +7,7 @@
 
 #import "DetailsViewController.h"
 #import "UIKit+AFNetworking.h"
+#import "FBUInstagramHelper.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *postImageView;
@@ -38,13 +39,7 @@
     NSURL *imageURL = [NSURL URLWithString:image.url];
     [self.postImageView setImageWithURL:imageURL];
     
-    // get date the post was created at and format it
-    NSDate *createdAt = [self.post createdAt];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateStyle = NSDateFormatterShortStyle;
-    formatter.timeStyle = NSDateFormatterShortStyle;
-
-    self.timestampLabel.text = [formatter stringFromDate:createdAt];
+    self.timestampLabel.text = [FBUInstagramHelper getRelativeTimeStampString:[self.post createdAt]];
     
     self.captionLabel.text = self.post[@"caption"];
     self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", self.post[@"likeCount"]];

@@ -12,6 +12,7 @@
 		AA77417626979821009DAB64 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA77417526979821009DAB64 /* ProfileViewController.m */; };
 		AA77417C26979CB1009DAB64 /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA77417B26979CB1009DAB64 /* ProfileView.m */; };
 		AA7741C02698D1DE009DAB64 /* PostGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7741BF2698D1DE009DAB64 /* PostGridCell.m */; };
+		AA7741C32698ECFD009DAB64 /* FBUInstagramHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7741C22698ECFD009DAB64 /* FBUInstagramHelper.m */; };
 		AAC464722694E77C001C5719 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC464712694E77C001C5719 /* AppDelegate.m */; };
 		AAC464752694E77C001C5719 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC464742694E77C001C5719 /* SceneDelegate.m */; };
 		AAC4647B2694E77C001C5719 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC464792694E77C001C5719 /* Main.storyboard */; };
@@ -58,6 +59,8 @@
 		AA77417B26979CB1009DAB64 /* ProfileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
 		AA7741BE2698D1DE009DAB64 /* PostGridCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostGridCell.h; sourceTree = "<group>"; };
 		AA7741BF2698D1DE009DAB64 /* PostGridCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostGridCell.m; sourceTree = "<group>"; };
+		AA7741C12698ECFD009DAB64 /* FBUInstagramHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBUInstagramHelper.h; path = ViewControllers/FBUInstagramHelper.h; sourceTree = "<group>"; };
+		AA7741C22698ECFD009DAB64 /* FBUInstagramHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBUInstagramHelper.m; sourceTree = "<group>"; };
 		AAC4646D2694E77C001C5719 /* FBUInstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBUInstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC464702694E77C001C5719 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AAC464712694E77C001C5719 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				AAC4647E2694E77F001C5719 /* LaunchScreen.storyboard */,
 				AAC464812694E77F001C5719 /* Info.plist */,
 				AAC464822694E77F001C5719 /* main.m */,
+				AA7741C12698ECFD009DAB64 /* FBUInstagramHelper.h */,
+				AA7741C22698ECFD009DAB64 /* FBUInstagramHelper.m */,
 			);
 			path = FBUInstagram;
 			sourceTree = "<group>";
@@ -486,6 +491,7 @@
 				AA7741C02698D1DE009DAB64 /* PostGridCell.m in Sources */,
 				AA77417626979821009DAB64 /* ProfileViewController.m in Sources */,
 				AAC464AD2694F987001C5719 /* ComposeViewController.m in Sources */,
+				AA7741C32698ECFD009DAB64 /* FBUInstagramHelper.m in Sources */,
 				AAC464832694E77F001C5719 /* main.m in Sources */,
 				AAD5957A2696367500A58F63 /* DetailsViewController.m in Sources */,
 				AAC464752694E77C001C5719 /* SceneDelegate.m in Sources */,
