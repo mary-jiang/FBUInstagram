@@ -27,6 +27,18 @@
     self.profileView.collectionView.delegate = self;
     self.profileView.collectionView.dataSource = self;
     
+    // format collection view
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.profileView.collectionView.collectionViewLayout;
+    
+    layout.minimumLineSpacing = 5; //space between each item in same column
+    layout.minimumInteritemSpacing = 5; //space between each item in same row
+    
+    CGFloat itemsPerLine = 3;
+    CGFloat itemWidth = (self.profileView.collectionView.frame.size.width - layout.minimumInteritemSpacing * (itemsPerLine - 1))  / itemsPerLine; //make the width scale with width of the screen based on how many posters in row and width of the screen
+    CGFloat itemHeight = itemWidth;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    
+    // update the UI elements not in the collection view
     [self.profileView updateUsername:user.username];
     [self.profileView updateProfilePicture:[UIImage imageNamed:@"image_placeholder"]]; //image placeholder for until profile image feature is completed
     
