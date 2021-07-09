@@ -7,10 +7,13 @@
 
 #import "ProfileViewController.h"
 #import "ProfileView.h"
+#import <Parse/Parse.h>
+#import "PostGridCell.h"
+#import "Post.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet ProfileView *profileView;
-
+@property (strong, nonatomic) NSArray *posts;
 @end
 
 @implementation ProfileViewController
@@ -18,7 +21,45 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.profileView updateUsername:@"haha LOSER"];
+    
+    PFUser *user = [PFUser currentUser];
+    
+    self.profileView.collectionView.delegate = self;
+    self.profileView.collectionView.dataSource = self;
+    
+    [self.profileView updateUsername:user.username];
+    [self.profileView updateProfilePicture:[UIImage imageNamed:@"image_placeholder"]]; //image placeholder for until profile image feature is completed
+    
+    [self fetchPostsByUser:user];
+}
+
+
+- (void) fetchPostsByUser: (PFUser *)user{
+    // create query to get posts only posted by the passed in user
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query whereKey:@"author" equalTo:user];
+    [query orderByDescending:@"createdAt"];
+    
+    // fetch the posts
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (objects != nil){
+            self.posts = objects;
+            [self.profileView.collectionView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    PostGridCell *cell = [self.profileView.collectionView dequeueReusableCellWithReuseIdentifier:@"PostGridCell" forIndexPath:indexPath];
+    Post *post = self.posts[indexPath.item];
+    cell.post = post;
+    return cell;
+}
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.posts.count;
 }
 
 /*
@@ -30,5 +71,8 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
 
 @end

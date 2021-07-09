@@ -24,8 +24,12 @@
 }
 */
 
-- (void) updateUsername:(NSString *) username{
+- (void) updateUsername:(NSString *) username {
     self.usernameLabel.text = username;
+}
+
+- (void) updateProfilePicture:(UIImage *) image{
+    self.profileImageView.image = image;
 }
 
 @end

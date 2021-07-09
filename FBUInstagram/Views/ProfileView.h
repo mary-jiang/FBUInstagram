@@ -11,7 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProfileView : UIView
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 - (void) updateUsername:(NSString *) username;
+- (void) updateProfilePicture:(UIImage *) image;
 
 @end
 
