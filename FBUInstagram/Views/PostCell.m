@@ -6,6 +6,7 @@
 //
 
 #import "PostCell.h"
+#import "UIKit+AFNetworking.h"
 
 @implementation PostCell
 
@@ -34,15 +35,10 @@
         }
     }];
     
-    // similar to the username, to display the image we need to fetch the data from Parse first
+    // get the post image's url and use that to set the imageview's image
     PFFileObject *image = self.post[@"image"];
-    [image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-        if (error == nil) {
-            self.postImageView.image = [UIImage imageWithData:data];
-        } else {
-            NSLog(@"Error fetching image: %@", error.localizedDescription);
-        }
-    }];
+    NSURL *imageURL = [NSURL URLWithString:image.url];
+    [self.postImageView setImageWithURL:imageURL];
     
     // have not implemented profile picture feature, for now put in a placeholder
     self.profileImageView.image = [UIImage imageNamed:@"image_placeholder"];
