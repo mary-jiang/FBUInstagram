@@ -2,7 +2,7 @@
 
 Not Instagram is a photo sharing app using Parse as its backend.
 
-Time spent: 12 hours spent in total
+Time spent: 16 hours spent in total
 
 ## User Stories
 
@@ -35,20 +35,16 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] Tapping on a post in the profile view will bring up a details view version of that post
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. Best way to implement likes
+2. Best way to implement comments
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with [Kap](https://getkap.co/).
 
 ## Credits
 
@@ -61,7 +57,7 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+The profile view scene uses MVC design where the model is seperate from the view controller and the view is seperated from the view controller. 
 
 ## License
 

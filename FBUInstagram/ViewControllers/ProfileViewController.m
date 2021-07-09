@@ -11,6 +11,7 @@
 #import "PostGridCell.h"
 #import "Post.h"
 #import "FBUInstagramHelper.h"
+#import "DetailsViewController.h"
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, ProfileViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet ProfileView *profileView;
@@ -46,6 +47,7 @@
     // update the UI elements not in the collection view
     [self.profileView updateUsername:self.user.username];
     
+    // set profile picture if available
     PFFileObject *profilePicture = self.user[@"profilepicture"];
     if (profilePicture != nil) {
         NSURL *profileURL = [NSURL URLWithString:profilePicture.url];
@@ -137,15 +139,22 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqual:@"detailSegue"]) {
+        UICollectionViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.profileView.collectionView indexPathForCell:tappedCell];
+        Post *post = self.posts[indexPath.item];
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.post = post;
+    }
 }
-*/
+
 
 
 

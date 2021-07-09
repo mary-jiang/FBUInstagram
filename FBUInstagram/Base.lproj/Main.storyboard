@@ -376,6 +376,7 @@
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="postImageView" destination="cp1-y1-v4h" id="cMb-WF-yW7"/>
+                                            <segue destination="rmt-zO-Yy2" kind="show" identifier="detailSegue" id="K7s-Tp-EUG"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -549,6 +550,9 @@
             <point key="canvasLocation" x="726" y="1566"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="K7s-Tp-EUG"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="feed_tab" width="25" height="25"/>
         <image name="insta_camera_btn" width="25" height="25"/>
