@@ -24,17 +24,6 @@
 - (void)setPost:(Post *)post {
     _post = post;
     
-    // to set the username label we need to first fetch the author's user object from Parse
-    PFUser *user = self.post[@"author"];
-    [user fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        if (error == nil) {
-            self.usernameLabel.text = object[@"username"];
-            self.headerUsernameLabel.text = object[@"username"];
-        } else {
-            NSLog(@"Error fetching user: %@", error.localizedDescription);
-        }
-    }];
-    
     // get the post image's url and use that to set the imageview's image
     PFFileObject *image = self.post[@"image"];
     NSURL *imageURL = [NSURL URLWithString:image.url];
@@ -54,6 +43,13 @@
     self.captionLabel.text = self.post[@"caption"];
     self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", self.post[@"likeCount"]];
     
+}
+
+- (void)setUsername:(NSString *)username {
+    _username = username;
+    
+    self.usernameLabel.text = self.username;
+    self.headerUsernameLabel.text = self.username;
 }
 
 @end

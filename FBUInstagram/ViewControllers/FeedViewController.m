@@ -80,6 +80,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PostCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     cell.post = self.posts[indexPath.row];
+    // to set the username label we need to first fetch the author's user object from Parse
+    PFUser *user = cell.post[@"author"];
+    [user fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if (error == nil) {
+            cell.username = object[@"username"];
+        } else {
+            NSLog(@"Error fetching user: %@", error.localizedDescription);
+        }
+    }];
     return cell;
 }
 

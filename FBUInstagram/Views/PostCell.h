@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likesLabel;
 @property (strong, nonatomic) Post *post;
+@property (strong, nonatomic) NSString *username;
 
 @end
 
