@@ -44,7 +44,13 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
+All required user stories:
+
+![](https://i.imgur.com/JQEXts0.gif)
+
+Profile tab:
+
+![](https://i.imgur.com/06vhToa.gif)
 
 ## Credits
 
